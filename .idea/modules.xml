@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/a_closer_look_at_the_blur_effect.iml" filepath="$PROJECT_DIR$/a_closer_look_at_the_blur_effect.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android/a_closer_look_at_the_blur_effect_android.iml" filepath="$PROJECT_DIR$/android/a_closer_look_at_the_blur_effect_android.iml" />
+    </modules>
+  </component>
+</project>
