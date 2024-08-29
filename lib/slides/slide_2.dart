@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_deck/flutter_deck.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
-class Slide1 extends FlutterDeckSlideWidget {
-  const Slide1()
+class Slide2 extends FlutterDeckSlideWidget {
+  const Slide2()
       : super(
           configuration: const FlutterDeckSlideConfiguration(
-            route: '/1',
-            title: '1',
+            route: '/2',
+            title: '2',
           ),
         );
 
@@ -32,6 +32,16 @@ class _Slide1ContentState extends State<Slide1Content> {
   bool _showNumberList = false;
   int _currentStep = 0;
   int _maxSteps = 99;
+
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(const Duration(milliseconds: 300), () {
+      setState(() {
+        _showNumberList = true;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
