@@ -1,19 +1,19 @@
 import 'dart:ui';
 
-import 'package:a_closer_look_at_the_blur_effect/slides/slide_0.dart';
-import 'package:a_closer_look_at_the_blur_effect/slides/slide_1.dart';
-import 'package:a_closer_look_at_the_blur_effect/slides/slide_10.dart';
-import 'package:a_closer_look_at_the_blur_effect/slides/slide_11.dart';
+import 'package:a_closer_look_at_the_blur_effect/slides/slide_0_into.dart';
+import 'package:a_closer_look_at_the_blur_effect/slides/slide_1_problem.dart';
+import 'package:a_closer_look_at_the_blur_effect/slides/slide_10_MaskFilter.dart';
+import 'package:a_closer_look_at_the_blur_effect/slides/slide_11_ImageFilter.dart';
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_12.dart';
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_13.dart';
-import 'package:a_closer_look_at_the_blur_effect/slides/slide_14.dart';
-import 'package:a_closer_look_at_the_blur_effect/slides/slide_15.dart';
-import 'package:a_closer_look_at_the_blur_effect/slides/slide_16.dart';
-import 'package:a_closer_look_at_the_blur_effect/slides/slide_17.dart';
-import 'package:a_closer_look_at_the_blur_effect/slides/slide_18.dart';
-import 'package:a_closer_look_at_the_blur_effect/slides/slide_19.dart';
-import 'package:a_closer_look_at_the_blur_effect/slides/slide_2.dart';
-import 'package:a_closer_look_at_the_blur_effect/slides/slide_20.dart';
+import 'package:a_closer_look_at_the_blur_effect/slides/slide_14_motion.dart';
+import 'package:a_closer_look_at_the_blur_effect/slides/slide_15_lens_like.dart';
+import 'package:a_closer_look_at_the_blur_effect/slides/slide_16_saturated.dart';
+import 'package:a_closer_look_at_the_blur_effect/slides/slide_17_Smooth.dart';
+import 'package:a_closer_look_at_the_blur_effect/slides/slide_18_shadermask.dart';
+import 'package:a_closer_look_at_the_blur_effect/slides/slide_19_not_enough.dart';
+import 'package:a_closer_look_at_the_blur_effect/slides/slide_2_solution.dart';
+import 'package:a_closer_look_at_the_blur_effect/slides/slide_20_interactive_blurring.dart';
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_21.dart';
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_22.dart';
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_23.dart';
@@ -23,7 +23,7 @@ import 'package:a_closer_look_at_the_blur_effect/slides/slide_26.dart';
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_27.dart';
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_28.dart';
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_29.dart';
-import 'package:a_closer_look_at_the_blur_effect/slides/slide_3.dart';
+import 'package:a_closer_look_at_the_blur_effect/slides/slide_3_gauss.dart';
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_30.dart';
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_31.dart';
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_32.dart';
@@ -34,12 +34,22 @@ import 'package:a_closer_look_at_the_blur_effect/slides/slide_4.dart';
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_5.dart';
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_6.dart';
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_7.dart';
-import 'package:a_closer_look_at_the_blur_effect/slides/slide_8.dart';
-import 'package:a_closer_look_at_the_blur_effect/slides/slide_9.dart';
+import 'package:a_closer_look_at_the_blur_effect/slides/slide_8_blur_apis.dart';
+import 'package:a_closer_look_at_the_blur_effect/slides/slide_9_Shadow.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_deck/flutter_deck.dart';
+import 'package:syntax_highlight/syntax_highlight.dart';
 
-void main() {
+late Highlighter highlighter;
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Highlighter.initialize(['dart', 'yaml', 'sql']);
+  var theme = await HighlighterTheme.loadLightTheme();
+  highlighter = Highlighter(
+    language: 'dart',
+    theme: theme,
+  );
   runApp(const FlutterDeckExample());
 }
 

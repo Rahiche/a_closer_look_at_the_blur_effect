@@ -11,12 +11,13 @@ class Slide12 extends FlutterDeckSlideWidget {
           ),
         );
 
+  @override
   FlutterDeckSlide build(BuildContext context) {
     return FlutterDeckSlide.custom(
       builder: (context) {
         return Center(
           child: Text(
-            'Those are the building blocks how far can we use them to construct what we want',
+            'Those are the building blocks',
             style: TextStyles.title,
           ),
         );

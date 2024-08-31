@@ -15,9 +15,13 @@ class Slide4 extends FlutterDeckSlideWidget {
     return FlutterDeckSlide.custom(
       builder: (context) {
         return Center(
-          child: Text(
-            'Back to the 20th century',
-            style: TextStyles.title,
+          child: Column(
+            children: [
+              Text(
+                'Back to the 20th century',
+                style: TextStyles.title,
+              ),
+            ],
           ),
         );
       },

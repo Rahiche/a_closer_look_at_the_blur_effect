@@ -2,12 +2,12 @@ import 'package:a_closer_look_at_the_blur_effect/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_deck/flutter_deck.dart';
 
-class Slide16 extends FlutterDeckSlideWidget {
-  const Slide16()
+class Slide19 extends FlutterDeckSlideWidget {
+  const Slide19()
       : super(
           configuration: const FlutterDeckSlideConfiguration(
-            route: '/16',
-            title: '16',
+            route: '/19',
+            title: '19',
           ),
         );
 
@@ -17,7 +17,8 @@ class Slide16 extends FlutterDeckSlideWidget {
       builder: (context) {
         return Center(
           child: Text(
-            'saturated blur',
+            'What does a blur do behind the scenes, example blured and not blured image ' +
+                'But that is not enough contorl for a progammer, we want access the pixel level right?',
             style: TextStyles.title,
           ),
         );
