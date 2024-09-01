@@ -12,13 +12,26 @@ class ShaderWidget extends StatefulWidget {
   State<ShaderWidget> createState() => _ShaderWidgetState();
 }
 
-class _ShaderWidgetState extends State<ShaderWidget> {
+class _ShaderWidgetState extends State<ShaderWidget>
+    with SingleTickerProviderStateMixin {
   bool _applyShader = false;
-  double _shaderValue = 0.5; // Default shader value
+  double _shaderValue = 0; // Start from 0
+  late AnimationController _controller;
+  late Animation<double> _animation;
 
   @override
   void initState() {
     super.initState();
+    _controller = AnimationController(
+      duration: const Duration(milliseconds: 400),
+      vsync: this,
+    );
+    _animation = Tween<double>(begin: 0, end: 10).animate(_controller)
+      ..addListener(() {
+        setState(() {
+          _shaderValue = _animation.value;
+        });
+      });
     _delayBlurEffect();
   }
 
@@ -28,8 +41,15 @@ class _ShaderWidgetState extends State<ShaderWidget> {
         setState(() {
           _applyShader = true;
         });
+        _controller.forward(); // Start the animation
       }
     });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -72,6 +92,11 @@ class _ShaderWidgetState extends State<ShaderWidget> {
             onChanged: (value) {
               setState(() {
                 _applyShader = value;
+                if (value) {
+                  _controller.forward();
+                } else {
+                  _controller.reverse();
+                }
               });
             },
           ),
@@ -84,7 +109,7 @@ class _ShaderWidgetState extends State<ShaderWidget> {
             child: Slider(
               value: _shaderValue,
               min: 0.0,
-              max: 1.0,
+              max: 10.0,
               onChanged: (value) {
                 setState(() {
                   _shaderValue = value;

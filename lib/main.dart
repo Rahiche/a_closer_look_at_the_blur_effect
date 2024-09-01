@@ -4,8 +4,8 @@ import 'package:a_closer_look_at_the_blur_effect/slides/slide_0_into.dart';
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_1_problem.dart';
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_10_MaskFilter.dart';
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_11_ImageFilter.dart';
-import 'package:a_closer_look_at_the_blur_effect/slides/slide_12.dart';
-import 'package:a_closer_look_at_the_blur_effect/slides/slide_13.dart';
+import 'package:a_closer_look_at_the_blur_effect/slides/slide_12_is_it_flexible.dart';
+import 'package:a_closer_look_at_the_blur_effect/slides/slide_13_yes.dart';
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_14_motion.dart';
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_15_lens_like.dart';
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_16_saturated.dart';
@@ -20,8 +20,8 @@ import 'package:a_closer_look_at_the_blur_effect/slides/slide_23.dart';
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_24_gpu_vs_cpu.dart';
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_25_flutter_blur_code.dart';
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_26_not_all_blur_are_The_same.dart';
-import 'package:a_closer_look_at_the_blur_effect/slides/slide_27.dart';
-import 'package:a_closer_look_at_the_blur_effect/slides/slide_28.dart';
+import 'package:a_closer_look_at_the_blur_effect/slides/slide_27_speedup_gaussian.dart';
+import 'package:a_closer_look_at_the_blur_effect/slides/slide_28_fast_rrect.dart';
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_29_custom_ones.dart';
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_3_gauss.dart';
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_30_box_blur.dart';
@@ -31,9 +31,6 @@ import 'package:a_closer_look_at_the_blur_effect/slides/slide_33_gradual.dart';
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_34_code_slides.dart';
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_35_thank_you.dart';
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_4.dart';
-import 'package:a_closer_look_at_the_blur_effect/slides/slide_5.dart';
-import 'package:a_closer_look_at_the_blur_effect/slides/slide_6.dart';
-import 'package:a_closer_look_at_the_blur_effect/slides/slide_7.dart';
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_8_blur_apis.dart';
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_9_Shadow.dart';
 import 'package:flutter/material.dart';
@@ -92,9 +89,6 @@ class FlutterDeckExample extends StatelessWidget {
           Slide2(),
           Slide3(),
           Slide4(),
-          Slide5(),
-          Slide6(),
-          Slide7(),
           Slide8(),
           Slide9(),
           Slide10(),

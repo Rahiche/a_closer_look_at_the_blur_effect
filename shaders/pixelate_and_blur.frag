@@ -1,9 +1,20 @@
+#version 460 core
+precision mediump float;
+
+#include <flutter/runtime_effect.glsl>
+
+uniform vec2 iResolution;
+uniform sampler2D iChannel0;
+
+out vec4 fragColor;
+
 const float pixelSize = 10.0; 
 const float radius = 5.0; 
 const int samples = 10; 
     
-void mainImage( out vec4 fragColor, in vec2 fragCoord )
+void main( )
 {
+    vec2 fragCoord = FlutterFragCoord().xy;
     vec2 uv = fragCoord/iResolution.xy;
     
     // Apply pixelation first

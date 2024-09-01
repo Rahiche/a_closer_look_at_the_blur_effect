@@ -27,13 +27,12 @@ class Slide1Content extends StatefulWidget {
   const Slide1Content({super.key});
 
   @override
-  _Slide1ContentState createState() => _Slide1ContentState();
+  State<Slide1Content> createState() => _Slide1ContentState();
 }
 
 class _Slide1ContentState extends State<Slide1Content> {
   bool _showNumberList = false;
   int _currentStep = 0;
-  final int _maxSteps = 99;
 
   @override
   void initState() {

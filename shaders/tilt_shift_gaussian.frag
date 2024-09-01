@@ -21,13 +21,13 @@ void main() {
 
     vec4 color = vec4(texture(uTexture, uv).rgb, 1.0);
 
-    if(fragCoord.y > uViewSize.y * 0.8) { 
+    if(fragCoord.y > uViewSize.y * 0.4) { 
         // How much the shift is visible.
-        const float shiftPower = 4.0;
+        const float shiftPower = 4.5;
 
         //declare stuff
         //The bigger the value the slower the effect
-        const int mSize = 55;
+        const int mSize = 29;
         const int kSize = (mSize-1)/2;
         float kernel[mSize];
         vec3 final_colour = vec3(0.0);
@@ -49,7 +49,7 @@ void main() {
         }
 
         // Blend factor for the effect
-        float val = clamp(shiftPower * abs(uViewSize.y * 0.8 - fragCoord.y) / (uViewSize.y * 0.4), 0.0, 1.0);
+        float val = clamp(shiftPower * abs(uViewSize.y * 0.4 - fragCoord.y) / (uViewSize.y * .9), 0.0, 1.0);
         FragColor = vec4(final_colour/(Z*Z), 1.0) * val + color * (1.0 - val);
     } else {
         FragColor = color;

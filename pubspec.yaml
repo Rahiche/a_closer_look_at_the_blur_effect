@@ -66,6 +66,9 @@ flutter:
     - shaders/glass.frag
     - shaders/gradual.frag
     - shaders/tilt_shift_gaussian.frag
+    - shaders/blur_and_pixelate.frag
+    - shaders/down_sample.frag
+    - shaders/pixelate_and_blur.frag
 
   assets:
     - assets/bg.png

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_deck/flutter_deck.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -25,18 +27,38 @@ class AnimatedCardsPage extends StatefulWidget {
   const AnimatedCardsPage({super.key});
 
   @override
-  _AnimatedCardsPageState createState() => _AnimatedCardsPageState();
+  State<AnimatedCardsPage> createState() => _AnimatedCardsPageState();
 }
 
 class _AnimatedCardsPageState extends State<AnimatedCardsPage> {
   int _visibleCards = 0;
+  Timer? _timer;
+
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(milliseconds: 300), () {
-      setState(() {
-        _visibleCards = 1;
-      });
+    _startShowingCards();
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
+
+  void _startShowingCards() {
+    _timer = Timer.periodic(const Duration(milliseconds: 600), (timer) {
+      if (mounted) {
+        setState(() {
+          if (_visibleCards < _cards.length) {
+            _visibleCards++;
+          } else {
+            timer.cancel();
+          }
+        });
+      } else {
+        timer.cancel();
+      }
     });
   }
 
@@ -71,47 +93,36 @@ class _AnimatedCardsPageState extends State<AnimatedCardsPage> {
     ),
   ];
 
-  void _showNextCard() {
-    if (_visibleCards < _cards.length) {
-      setState(() {
-        _visibleCards++;
-      });
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: _showNextCard,
-      child: Center(
-        child: AnimatedSize(
-          clipBehavior: Clip.none,
-          alignment: Alignment.centerLeft,
-          duration: 300.ms,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            children: List.generate(_cards.length, (index) {
-              if (index < _visibleCards) {
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: _cards[index]
-                      .animate()
-                      .fade(duration: 500.ms)
-                      .scale(
-                          begin: const Offset(0.8, 0.8),
-                          end: const Offset(1, 1),
-                          duration: 500.ms)
-                      .slide(
-                          begin: const Offset(0.2, 0),
-                          end: Offset.zero,
-                          duration: 500.ms),
-                );
-              } else {
-                return const SizedBox.shrink();
-              }
-            }),
-          ),
+    return Center(
+      child: AnimatedSize(
+        clipBehavior: Clip.none,
+        alignment: Alignment.centerLeft,
+        duration: const Duration(milliseconds: 300),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: List.generate(_cards.length, (index) {
+            if (index < _visibleCards) {
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: _cards[index]
+                    .animate()
+                    .fade(duration: const Duration(milliseconds: 500))
+                    .scale(
+                        begin: const Offset(0.8, 0.8),
+                        end: const Offset(1, 1),
+                        duration: const Duration(milliseconds: 500))
+                    .slide(
+                        begin: const Offset(0.2, 0),
+                        end: Offset.zero,
+                        duration: const Duration(milliseconds: 500)),
+              );
+            } else {
+              return const SizedBox.shrink();
+            }
+          }),
         ),
       ),
     );
