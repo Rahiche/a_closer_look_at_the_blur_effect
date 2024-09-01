@@ -15,14 +15,14 @@ class Slide27 extends FlutterDeckSlideWidget {
   FlutterDeckSlide build(BuildContext context) {
     return FlutterDeckSlide.custom(
       builder: (context) {
-        return _SlideContent();
+        return const _SlideContent();
       },
     );
   }
 }
 
 class _SlideContent extends StatelessWidget {
-  const _SlideContent({super.key});
+  const _SlideContent();
 
   @override
   Widget build(BuildContext context) {

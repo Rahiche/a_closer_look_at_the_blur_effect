@@ -23,12 +23,12 @@ class Slide35 extends FlutterDeckSlideWidget {
                 'Thank You!',
                 style: TextStyles.title,
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Text(
                 '@rahiche',
                 style: TextStyles.subtitle,
               ),
-              SizedBox(height: 80),
+              const SizedBox(height: 80),
             ],
           ),
         );

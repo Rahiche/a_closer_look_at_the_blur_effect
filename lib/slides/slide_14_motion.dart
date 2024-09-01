@@ -1,4 +1,3 @@
-import 'package:a_closer_look_at_the_blur_effect/main.dart';
 import 'package:a_closer_look_at_the_blur_effect/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_deck/flutter_deck.dart';
@@ -19,14 +18,14 @@ class Slide14 extends FlutterDeckSlideWidget {
   FlutterDeckSlide build(BuildContext context) {
     return FlutterDeckSlide.custom(
       builder: (context) {
-        return MotionBlurDemo();
+        return const MotionBlurDemo();
       },
     );
   }
 }
 
 class MotionBlurDemo extends StatefulWidget {
-  const MotionBlurDemo({Key? key}) : super(key: key);
+  const MotionBlurDemo({super.key});
 
   @override
   _MotionBlurDemoState createState() => _MotionBlurDemoState();
@@ -73,7 +72,7 @@ class _MotionBlurDemoState extends State<MotionBlurDemo> {
                           });
                         },
                       ),
-                      Text('${_maxScrollSpeed.toStringAsFixed(1)}',
+                      Text(_maxScrollSpeed.toStringAsFixed(1),
                           style: TextStyles.bodyText),
                     ],
                   ),
@@ -138,8 +137,7 @@ class _MotionBlurDemoState extends State<MotionBlurDemo> {
 class BlurredListViewDemo extends StatefulWidget {
   final double maxScrollSpeed;
 
-  const BlurredListViewDemo({Key? key, required this.maxScrollSpeed})
-      : super(key: key);
+  const BlurredListViewDemo({super.key, required this.maxScrollSpeed});
 
   @override
   _BlurredListViewDemoState createState() => _BlurredListViewDemoState();
@@ -183,7 +181,7 @@ class _BlurredListViewDemoState extends State<BlurredListViewDemo>
       // Calculate blur amount based on scroll speed
       double blurAmount = (_scrollSpeed / _maxScrollSpeed).clamp(0.0, 1.0);
       _animationController.animateTo(blurAmount,
-          duration: Duration(milliseconds: 50));
+          duration: const Duration(milliseconds: 50));
 
       setState(() {});
     }
@@ -193,7 +191,7 @@ class _BlurredListViewDemoState extends State<BlurredListViewDemo>
 
     _scrollEndTimer?.cancel();
     _scrollEndTimer = Timer(const Duration(milliseconds: 200), () {
-      _animationController.animateTo(0, duration: Duration(milliseconds: 200));
+      _animationController.animateTo(0, duration: const Duration(milliseconds: 200));
     });
   }
 

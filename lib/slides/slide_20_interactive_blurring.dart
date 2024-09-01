@@ -17,14 +17,14 @@ class Slide20 extends FlutterDeckSlideWidget {
   FlutterDeckSlide build(BuildContext context) {
     return FlutterDeckSlide.custom(
       builder: (context) {
-        return _SlideContent();
+        return const _SlideContent();
       },
     );
   }
 }
 
 class _SlideContent extends StatelessWidget {
-  const _SlideContent({super.key});
+  const _SlideContent();
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class _SlideContent extends StatelessWidget {
       children: [
         Text('What is a blur', style: TextStyles.title),
         const SizedBox(height: 20),
-        Expanded(child: InteractiveMarioPixelArt()),
+        const Expanded(child: InteractiveMarioPixelArt()),
       ],
     );
   }
@@ -41,7 +41,7 @@ class _SlideContent extends StatelessWidget {
 class InteractiveMarioPixelArt extends StatefulWidget {
   final double size;
 
-  const InteractiveMarioPixelArt({Key? key, this.size = 400}) : super(key: key);
+  const InteractiveMarioPixelArt({super.key, this.size = 400});
 
   @override
   _InteractiveMarioPixelArtState createState() =>
@@ -68,7 +68,7 @@ class _InteractiveMarioPixelArtState extends State<InteractiveMarioPixelArt> {
     return Column(
       children: [
         _buildControls(),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         Expanded(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -112,17 +112,17 @@ class _InteractiveMarioPixelArtState extends State<InteractiveMarioPixelArt> {
       children: [
         ElevatedButton(
           onPressed: isBlurring ? null : _startBlurAnimation,
-          child: Text('Blur All Pixels'),
+          child: const Text('Blur All Pixels'),
         ),
-        SizedBox(width: 10),
+        const SizedBox(width: 10),
         ElevatedButton(
           onPressed: _resetAllPixels,
-          child: Text('Reset All'),
+          child: const Text('Reset All'),
         ),
-        SizedBox(width: 10),
+        const SizedBox(width: 10),
         ElevatedButton(
           onPressed: _randomlyBlurAllElements,
-          child: Text('Random Blur'),
+          child: const Text('Random Blur'),
         ),
       ],
     );
@@ -182,7 +182,7 @@ class _InteractiveMarioPixelArtState extends State<InteractiveMarioPixelArt> {
     int currentX = 0;
     int currentY = 0;
 
-    Timer.periodic(Duration(milliseconds: 10), (timer) {
+    Timer.periodic(const Duration(milliseconds: 10), (timer) {
       if (currentY >= gridSize) {
         timer.cancel();
         setState(() {
@@ -772,8 +772,7 @@ const List<int> pixelPattern = [
 class GaussianKernelWidget extends StatefulWidget {
   final Function(List<List<double>>, double) onKernelChanged;
 
-  const GaussianKernelWidget({Key? key, required this.onKernelChanged})
-      : super(key: key);
+  const GaussianKernelWidget({super.key, required this.onKernelChanged});
 
   @override
   _GaussianKernelWidgetState createState() => _GaussianKernelWidgetState();
@@ -848,14 +847,14 @@ class _GaussianKernelWidgetState extends State<GaussianKernelWidget> {
                 child: Center(
                   child: Text(
                     _kernel[y][x].toStringAsFixed(4),
-                    style: TextStyle(fontSize: 8),
+                    style: const TextStyle(fontSize: 8),
                   ),
                 ),
               );
             },
           ),
         ),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         Text('Kernel Size: $_kernelSize'),
         Slider(
           value: _kernelSize.toDouble(),

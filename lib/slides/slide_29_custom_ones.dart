@@ -16,7 +16,7 @@ class Slide29 extends FlutterDeckSlideWidget {
   FlutterDeckSlide build(BuildContext context) {
     return FlutterDeckSlide.custom(
       builder: (context) {
-        return AnimatedSize(
+        return const AnimatedSize(
           duration: Duration(milliseconds: 800),
           curve: Curves.linear,
           alignment: Alignment.center,
@@ -29,7 +29,7 @@ class Slide29 extends FlutterDeckSlideWidget {
 }
 
 class AnimatedQuestionAnswer extends StatefulWidget {
-  const AnimatedQuestionAnswer({Key? key}) : super(key: key);
+  const AnimatedQuestionAnswer({super.key});
 
   @override
   _AnimatedQuestionAnswerState createState() => _AnimatedQuestionAnswerState();
@@ -57,7 +57,7 @@ class _AnimatedQuestionAnswerState extends State<AnimatedQuestionAnswer> {
             )
                 .animate()
                 .fadeIn(duration: 500.ms)
-                .scale(begin: Offset(0.8, 0.8), end: Offset(1, 1)),
+                .scale(begin: const Offset(0.8, 0.8), end: const Offset(1, 1)),
             if (_showAnswer) ...[
               const SizedBox(height: 16),
               Text(

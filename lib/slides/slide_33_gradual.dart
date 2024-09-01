@@ -1,5 +1,4 @@
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_30_box_blur.dart';
-import 'package:a_closer_look_at_the_blur_effect/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_deck/flutter_deck.dart';
 import 'package:flutter_syntax_view/flutter_syntax_view.dart';

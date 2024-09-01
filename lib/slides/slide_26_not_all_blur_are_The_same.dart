@@ -17,14 +17,14 @@ class Slide26 extends FlutterDeckSlideWidget {
   FlutterDeckSlide build(BuildContext context) {
     return FlutterDeckSlide.custom(
       builder: (context) {
-        return _SlideContent();
+        return const _SlideContent();
       },
     );
   }
 }
 
 class _SlideContent extends StatelessWidget {
-  const _SlideContent({super.key});
+  const _SlideContent();
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class _SlideContent extends StatelessWidget {
       children: [
         Text('Not all Blurs are the same', style: TextStyles.title),
         const SizedBox(height: 20),
-        Expanded(child: BlurDemo()),
+        const Expanded(child: BlurDemo()),
         const SizedBox(height: 80),
       ],
     );
@@ -40,6 +40,8 @@ class _SlideContent extends StatelessWidget {
 }
 
 class BlurDemo extends StatefulWidget {
+  const BlurDemo({super.key});
+
   @override
   _BlurDemoState createState() => _BlurDemoState();
 }
@@ -116,7 +118,7 @@ class _BlurDemoState extends State<BlurDemo>
                         ),
                       ],
                     ),
-                    child: Center(
+                    child: const Center(
                       child: Text(
                         'Blur Shadow',
                         style: TextStyle(color: Colors.yellow, fontSize: 16),

@@ -1,4 +1,3 @@
-import 'package:a_closer_look_at_the_blur_effect/spacing.dart';
 import 'package:a_closer_look_at_the_blur_effect/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_deck/flutter_deck.dart';
@@ -21,14 +20,14 @@ class Slide21 extends FlutterDeckSlideWidget {
   FlutterDeckSlide build(BuildContext context) {
     return FlutterDeckSlide.custom(
       builder: (context) {
-        return _SlideContent();
+        return const _SlideContent();
       },
     );
   }
 }
 
 class _SlideContent extends StatelessWidget {
-  const _SlideContent({super.key});
+  const _SlideContent();
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +35,7 @@ class _SlideContent extends StatelessWidget {
       children: [
         Text('Blur Using dart', style: TextStyles.title),
         const SizedBox(height: 20),
-        Expanded(
+        const Expanded(
           child: GaussianBlurWidget(
             imagePath: 'assets/rg.jpg',
           ),
@@ -49,8 +48,7 @@ class _SlideContent extends StatelessWidget {
 class GaussianBlurWidget extends StatefulWidget {
   final String imagePath;
 
-  const GaussianBlurWidget({Key? key, required this.imagePath})
-      : super(key: key);
+  const GaussianBlurWidget({super.key, required this.imagePath});
 
   @override
   State<GaussianBlurWidget> createState() => _GaussianBlurWidgetState();

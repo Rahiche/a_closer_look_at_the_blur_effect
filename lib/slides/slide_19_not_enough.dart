@@ -17,8 +17,7 @@ class Slide19 extends FlutterDeckSlideWidget {
       builder: (context) {
         return Center(
           child: Text(
-            'What does a blur do behind the scenes, example blured and not blured image ' +
-                'But that is not enough contorl for a progammer, we want access the pixel level right?',
+            'What does a blur do behind the scenes, example blured and not blured image ' 'But that is not enough contorl for a progammer, we want access the pixel level right?',
             style: TextStyles.title,
           ),
         );

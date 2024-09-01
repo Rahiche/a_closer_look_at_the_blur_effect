@@ -15,13 +15,15 @@ class Slide3 extends FlutterDeckSlideWidget {
   FlutterDeckSlide build(BuildContext context) {
     return FlutterDeckSlide.custom(
       builder: (context) {
-        return AnimatedCardsPage();
+        return const AnimatedCardsPage();
       },
     );
   }
 }
 
 class AnimatedCardsPage extends StatefulWidget {
+  const AnimatedCardsPage({super.key});
+
   @override
   _AnimatedCardsPageState createState() => _AnimatedCardsPageState();
 }
@@ -39,7 +41,7 @@ class _AnimatedCardsPageState extends State<AnimatedCardsPage> {
   }
 
   final List<Widget> _cards = [
-    CardWidget(
+    const CardWidget(
       child: Text(
         'The year is: 1784',
         style: TextStyle(fontSize: 24),
@@ -52,7 +54,7 @@ class _AnimatedCardsPageState extends State<AnimatedCardsPage> {
         fit: BoxFit.cover,
       ),
     ),
-    CardWidget(
+    const CardWidget(
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -92,21 +94,21 @@ class _AnimatedCardsPageState extends State<AnimatedCardsPage> {
             children: List.generate(_cards.length, (index) {
               if (index < _visibleCards) {
                 return Padding(
-                  padding: EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8.0),
                   child: _cards[index]
                       .animate()
                       .fade(duration: 500.ms)
                       .scale(
-                          begin: Offset(0.8, 0.8),
-                          end: Offset(1, 1),
+                          begin: const Offset(0.8, 0.8),
+                          end: const Offset(1, 1),
                           duration: 500.ms)
                       .slide(
-                          begin: Offset(0.2, 0),
+                          begin: const Offset(0.2, 0),
                           end: Offset.zero,
                           duration: 500.ms),
                 );
               } else {
-                return SizedBox.shrink();
+                return const SizedBox.shrink();
               }
             }),
           ),
@@ -119,7 +121,7 @@ class _AnimatedCardsPageState extends State<AnimatedCardsPage> {
 class CardWidget extends StatelessWidget {
   final Widget child;
 
-  const CardWidget({Key? key, required this.child}) : super(key: key);
+  const CardWidget({super.key, required this.child});
 
   @override
   Widget build(BuildContext context) {

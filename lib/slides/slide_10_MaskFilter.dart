@@ -2,7 +2,6 @@ import 'package:a_closer_look_at_the_blur_effect/spacing.dart';
 import 'package:a_closer_look_at_the_blur_effect/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_deck/flutter_deck.dart';
-import 'dart:ui';
 
 class Slide10 extends FlutterDeckSlideWidget {
   const Slide10()
@@ -17,7 +16,7 @@ class Slide10 extends FlutterDeckSlideWidget {
   FlutterDeckSlide build(BuildContext context) {
     return FlutterDeckSlide.custom(
       builder: (context) {
-        return MaskFilterPlaygroundSlide();
+        return const MaskFilterPlaygroundSlide();
       },
     );
   }
@@ -36,14 +35,14 @@ class _MaskFilterPlaygroundSlideState extends State<MaskFilterPlaygroundSlide> {
   double _blurRadius = 5.0;
   BlurStyle _blurStyle = BlurStyle.normal;
   Color _shapeColor = Colors.blue;
-  Color _blurColor = Colors.black.withOpacity(0.5);
+  final Color _blurColor = Colors.black.withOpacity(0.5);
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Text('MaskFilter Playground', style: TextStyles.subtitle),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         Expanded(
           child: Row(
             children: [
@@ -81,7 +80,7 @@ class _MaskFilterPlaygroundSlideState extends State<MaskFilterPlaygroundSlide> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Blur Radius'),
+                      const Text('Blur Radius'),
                       Slider(
                         value: _blurRadius,
                         min: 0,
@@ -95,8 +94,8 @@ class _MaskFilterPlaygroundSlideState extends State<MaskFilterPlaygroundSlide> {
                           });
                         },
                       ),
-                      SizedBox(height: 20),
-                      Text('Blur Style'),
+                      const SizedBox(height: 20),
+                      const Text('Blur Style'),
                       Wrap(
                         children: BlurStyle.values.map((BlurStyle style) {
                           return RadioListTile<BlurStyle>(
@@ -112,8 +111,8 @@ class _MaskFilterPlaygroundSlideState extends State<MaskFilterPlaygroundSlide> {
                           );
                         }).toList(),
                       ),
-                      SizedBox(height: 20),
-                      Text('Color'),
+                      const SizedBox(height: 20),
+                      const Text('Color'),
                       Wrap(
                         children: [
                           ColorOption(Colors.blue, _shapeColor,
@@ -126,14 +125,14 @@ class _MaskFilterPlaygroundSlideState extends State<MaskFilterPlaygroundSlide> {
                               onTap: () => _updateColor(Colors.yellow)),
                         ],
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       ElevatedButton(
                         onPressed: () {
                           setState(() {
                             _currentFilter = null;
                           });
                         },
-                        child: Text('Clear Filter'),
+                        child: const Text('Clear Filter'),
                       ),
                     ],
                   ),
@@ -222,7 +221,7 @@ class ShapeWithMask extends StatelessWidget {
         child: Center(
           child: Padding(
             padding: const EdgeInsets.all(Spacing.xl),
-            child: Container(
+            child: SizedBox(
               width: 100,
               height: 100,
               child: CustomPaint(
@@ -253,7 +252,7 @@ class ColorOption extends StatelessWidget {
       child: Container(
         width: 40,
         height: 40,
-        margin: EdgeInsets.all(4),
+        margin: const EdgeInsets.all(4),
         decoration: BoxDecoration(
           color: color,
           shape: BoxShape.circle,

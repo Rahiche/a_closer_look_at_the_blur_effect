@@ -16,14 +16,14 @@ class Slide9 extends FlutterDeckSlideWidget {
   FlutterDeckSlide build(BuildContext context) {
     return FlutterDeckSlide.custom(
       builder: (context) {
-        return ShadowPlaygroundSlide();
+        return const ShadowPlaygroundSlide();
       },
     );
   }
 }
 
 class ShadowPlaygroundSlide extends StatefulWidget {
-  const ShadowPlaygroundSlide({Key? key}) : super(key: key);
+  const ShadowPlaygroundSlide({super.key});
 
   @override
   _ShadowPlaygroundSlideState createState() => _ShadowPlaygroundSlideState();
@@ -33,7 +33,7 @@ class _ShadowPlaygroundSlideState extends State<ShadowPlaygroundSlide> {
   double _blurRadius = 0.0;
   double _spreadRadius = 0.0;
   Offset _offset = const Offset(0, 4);
-  Color _shadowColor = Colors.white.withOpacity(0.3);
+  final Color _shadowColor = Colors.white.withOpacity(0.3);
 
   @override
   Widget build(BuildContext context) {

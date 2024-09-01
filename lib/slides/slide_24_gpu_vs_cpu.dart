@@ -17,14 +17,14 @@ class Slide24 extends FlutterDeckSlideWidget {
   FlutterDeckSlide build(BuildContext context) {
     return FlutterDeckSlide.custom(
       builder: (context) {
-        return _SlideContent();
+        return const _SlideContent();
       },
     );
   }
 }
 
 class _SlideContent extends StatelessWidget {
-  const _SlideContent({super.key});
+  const _SlideContent();
 
   @override
   Widget build(BuildContext context) {
@@ -32,13 +32,15 @@ class _SlideContent extends StatelessWidget {
       children: [
         Text('GPU vs CPU', style: TextStyles.title),
         const SizedBox(height: 20),
-        Expanded(child: GPUvsCPUDemo()),
+        const Expanded(child: GPUvsCPUDemo()),
       ],
     );
   }
 }
 
 class GPUvsCPUDemo extends StatefulWidget {
+  const GPUvsCPUDemo({super.key});
+
   @override
   _GPUvsCPUDemoState createState() => _GPUvsCPUDemoState();
 }
@@ -104,9 +106,9 @@ class _GPUvsCPUDemoState extends State<GPUvsCPUDemo>
       children: [
         Text(
           title,
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         Expanded(
           child: AspectRatio(
             aspectRatio: 1,
@@ -142,12 +144,12 @@ class _GPUvsCPUDemoState extends State<GPUvsCPUDemo>
               ],
             ),
           ),
-          SizedBox(height: 20),
-          Text(
+          const SizedBox(height: 20),
+          const Text(
             'GPU updates all cells simultaneously,\nwhile CPU updates one cell at a time.',
             textAlign: TextAlign.center,
           ),
-          SizedBox(height: 80),
+          const SizedBox(height: 80),
         ],
       ),
     );

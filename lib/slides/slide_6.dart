@@ -11,6 +11,7 @@ class Slide6 extends FlutterDeckSlideWidget {
           ),
         );
 
+  @override
   FlutterDeckSlide build(BuildContext context) {
     return FlutterDeckSlide.custom(
       builder: (context) {

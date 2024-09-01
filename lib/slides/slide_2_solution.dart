@@ -17,13 +17,15 @@ class Slide2 extends FlutterDeckSlideWidget {
   FlutterDeckSlide build(BuildContext context) {
     return FlutterDeckSlide.custom(
       builder: (context) {
-        return Slide1Content();
+        return const Slide1Content();
       },
     );
   }
 }
 
 class Slide1Content extends StatefulWidget {
+  const Slide1Content({super.key});
+
   @override
   _Slide1ContentState createState() => _Slide1ContentState();
 }
@@ -31,7 +33,7 @@ class Slide1Content extends StatefulWidget {
 class _Slide1ContentState extends State<Slide1Content> {
   bool _showNumberList = false;
   int _currentStep = 0;
-  int _maxSteps = 99;
+  final int _maxSteps = 99;
 
   @override
   void initState() {
@@ -94,7 +96,7 @@ class _Slide1ContentState extends State<Slide1Content> {
 class NumberList extends StatelessWidget {
   final int currentStep;
 
-  const NumberList({Key? key, required this.currentStep}) : super(key: key);
+  const NumberList({super.key, required this.currentStep});
 
   @override
   Widget build(BuildContext context) {
@@ -122,8 +124,8 @@ class NumberList extends StatelessWidget {
               .blur(
                 delay: (index * 60).ms,
                 duration: 600.ms,
-                begin: Offset(10, 10),
-                end: Offset(0, 0),
+                begin: const Offset(10, 10),
+                end: const Offset(0, 0),
               );
         }),
       ),

@@ -16,13 +16,15 @@ class Slide11 extends FlutterDeckSlideWidget {
   FlutterDeckSlide build(BuildContext context) {
     return FlutterDeckSlide.custom(
       builder: (context) {
-        return ImageFilterPlaygroundSlide();
+        return const ImageFilterPlaygroundSlide();
       },
     );
   }
 }
 
 class ImageFilterPlaygroundSlide extends StatefulWidget {
+  const ImageFilterPlaygroundSlide({super.key});
+
   @override
   _ImageFilterPlaygroundSlideState createState() =>
       _ImageFilterPlaygroundSlideState();
@@ -40,7 +42,7 @@ class _ImageFilterPlaygroundSlideState
     return Column(
       children: [
         Text('ImageFilter Playground', style: TextStyles.subtitle),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         Expanded(
           child: Row(
             children: [
@@ -69,7 +71,7 @@ class _ImageFilterPlaygroundSlideState
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       SwitchListTile(
-                        title: Text('Use Combined Blur'),
+                        title: const Text('Use Combined Blur'),
                         value: _useCombinedBlur,
                         onChanged: (bool value) {
                           setState(() {
@@ -83,7 +85,7 @@ class _ImageFilterPlaygroundSlideState
                           });
                         },
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       if (_useCombinedBlur)
                         Column(
                           children: [
@@ -112,7 +114,7 @@ class _ImageFilterPlaygroundSlideState
                               onChanged: (value) =>
                                   setState(() => _sigmaX = value),
                             ),
-                            SizedBox(height: 20),
+                            const SizedBox(height: 20),
                             Text('Blur Y',
                                 style: Theme.of(context).textTheme.titleMedium),
                             Slider(

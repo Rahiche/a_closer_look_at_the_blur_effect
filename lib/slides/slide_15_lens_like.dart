@@ -16,14 +16,14 @@ class Slide15 extends FlutterDeckSlideWidget {
   FlutterDeckSlide build(BuildContext context) {
     return FlutterDeckSlide.custom(
       builder: (context) {
-        return _SlideContent();
+        return const _SlideContent();
       },
     );
   }
 }
 
 class _SlideContent extends StatelessWidget {
-  const _SlideContent({super.key});
+  const _SlideContent();
 
   @override
   Widget build(BuildContext context) {
@@ -31,14 +31,14 @@ class _SlideContent extends StatelessWidget {
       children: [
         Text('Lens like Blur', style: TextStyles.title),
         const SizedBox(height: 20),
-        Expanded(child: ImageFilterDemo())
+        const Expanded(child: ImageFilterDemo())
       ],
     );
   }
 }
 
 class ImageFilterDemo extends StatefulWidget {
-  const ImageFilterDemo({Key? key}) : super(key: key);
+  const ImageFilterDemo({super.key});
 
   @override
   _ImageFilterDemoState createState() => _ImageFilterDemoState();
@@ -193,7 +193,7 @@ class ImageFilter extends StatelessWidget {
   final bool isErodeEnabled;
 
   const ImageFilter({
-    Key? key,
+    super.key,
     required this.imageUrl,
     required this.blurSigma,
     required this.dilateAmount,
@@ -201,7 +201,7 @@ class ImageFilter extends StatelessWidget {
     required this.isBlurOuter,
     required this.isDilateEnabled,
     required this.isErodeEnabled,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

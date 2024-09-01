@@ -17,14 +17,14 @@ class Slide16 extends FlutterDeckSlideWidget {
   FlutterDeckSlide build(BuildContext context) {
     return FlutterDeckSlide.custom(
       builder: (context) {
-        return _SlideContent();
+        return const _SlideContent();
       },
     );
   }
 }
 
 class _SlideContent extends StatelessWidget {
-  const _SlideContent({super.key});
+  const _SlideContent();
 
   @override
   Widget build(BuildContext context) {
@@ -32,14 +32,14 @@ class _SlideContent extends StatelessWidget {
       children: [
         Text('Saturated Blur', style: TextStyles.title),
         const SizedBox(height: 20),
-        Expanded(child: ColorMatrixAndBlur())
+        const Expanded(child: ColorMatrixAndBlur())
       ],
     );
   }
 }
 
 class ColorMatrixAndBlur extends StatefulWidget {
-  const ColorMatrixAndBlur({Key? key}) : super(key: key);
+  const ColorMatrixAndBlur({super.key});
 
   @override
   _ColorMatrixAndBlurState createState() => _ColorMatrixAndBlurState();
@@ -75,7 +75,7 @@ class _ColorMatrixAndBlurState extends State<ColorMatrixAndBlur> {
                   max: 10,
                   onChanged: (value) => setState(() => _blurSigma = value),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Text('Red Scale: ${_redScale.toStringAsFixed(2)}'),
                 Slider(
                   value: _redScale,
@@ -104,8 +104,8 @@ class _ColorMatrixAndBlurState extends State<ColorMatrixAndBlur> {
                   max: 1,
                   onChanged: (value) => setState(() => _additive = value),
                 ),
-                SizedBox(height: 20),
-                Text('Color Matrix:'),
+                const SizedBox(height: 20),
+                const Text('Color Matrix:'),
                 for (int i = 0; i < 4; i++)
                   Row(
                     children: [
@@ -121,10 +121,10 @@ class _ColorMatrixAndBlurState extends State<ColorMatrixAndBlur> {
                         ),
                     ],
                   ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Row(
                   children: [
-                    Text('Color Filter is:'),
+                    const Text('Color Filter is:'),
                     Switch(
                       value: _isColorFilterInner,
                       onChanged: (value) =>
@@ -135,7 +135,7 @@ class _ColorMatrixAndBlurState extends State<ColorMatrixAndBlur> {
                 ),
                 Row(
                   children: [
-                    Text('Show Device Frame:'),
+                    const Text('Show Device Frame:'),
                     Switch(
                       value: _showDeviceFrame,
                       onChanged: (value) =>
@@ -145,7 +145,7 @@ class _ColorMatrixAndBlurState extends State<ColorMatrixAndBlur> {
                 ),
                 Row(
                   children: [
-                    Text('Use Color Filter:'),
+                    const Text('Use Color Filter:'),
                     Switch(
                       value: _useColorFilter,
                       onChanged: (value) =>
@@ -153,17 +153,17 @@ class _ColorMatrixAndBlurState extends State<ColorMatrixAndBlur> {
                     ),
                   ],
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Row(
                   children: [
                     ElevatedButton(
                       onPressed: () => _setPreset(true),
-                      child: Text('Light Preset'),
+                      child: const Text('Light Preset'),
                     ),
-                    SizedBox(width: 10),
+                    const SizedBox(width: 10),
                     ElevatedButton(
                       onPressed: () => _setPreset(false),
-                      child: Text('Dark Preset'),
+                      child: const Text('Dark Preset'),
                     ),
                   ],
                 ),
@@ -282,14 +282,14 @@ class _DeviceFrameViewState extends State<DeviceFrameView> {
       screen: Scaffold(
         extendBodyBehindAppBar: true,
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(kToolbarHeight),
+          preferredSize: const Size.fromHeight(kToolbarHeight),
           child: ClipRect(
             child: BackdropFilter(
               filter: widget.imageFilter,
               child: AppBar(
                 backgroundColor: Colors.transparent,
                 elevation: 0,
-                title: Text(
+                title: const Text(
                   'Colorful ListView',
                   style: TextStyle(color: Colors.black),
                 ),
@@ -302,13 +302,13 @@ class _DeviceFrameViewState extends State<DeviceFrameView> {
           itemBuilder: (context, index) {
             return Card(
               elevation: 2,
-              margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+              margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
               color: colors[index % colors.length],
               child: ListTile(
-                contentPadding: EdgeInsets.all(16),
+                contentPadding: const EdgeInsets.all(16),
                 title: Text(
                   'Item $index',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
                     color: Colors.black87,
@@ -316,7 +316,7 @@ class _DeviceFrameViewState extends State<DeviceFrameView> {
                 ),
                 subtitle: Text(
                   'Description for item $index',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 14,
                     color: Colors.black54,
                   ),
@@ -325,7 +325,7 @@ class _DeviceFrameViewState extends State<DeviceFrameView> {
                   backgroundColor: colors[(index + 2) % colors.length],
                   child: Text(
                     '${index + 1}',
-                    style: TextStyle(color: Colors.black87),
+                    style: const TextStyle(color: Colors.black87),
                   ),
                 ),
               ),

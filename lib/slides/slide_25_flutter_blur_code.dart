@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:a_closer_look_at_the_blur_effect/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_deck/flutter_deck.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 
 class Slide25 extends FlutterDeckSlideWidget {
   const Slide25()
@@ -18,14 +17,14 @@ class Slide25 extends FlutterDeckSlideWidget {
   FlutterDeckSlide build(BuildContext context) {
     return FlutterDeckSlide.custom(
       builder: (context) {
-        return _SlideContent();
+        return const _SlideContent();
       },
     );
   }
 }
 
 class _SlideContent extends StatelessWidget {
-  const _SlideContent({super.key});
+  const _SlideContent();
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +32,7 @@ class _SlideContent extends StatelessWidget {
       children: [
         Text('How Flutter blur works', style: TextStyles.title),
         const SizedBox(height: 20),
-        Expanded(
+        const Expanded(
             child: AnimatedImageCarousel(
           imageUrls: [
             "https://i.imgur.com/2VTlUTd.png",
@@ -54,10 +53,10 @@ class AnimatedImageCarousel extends StatefulWidget {
   final Duration animationDuration;
 
   const AnimatedImageCarousel({
-    Key? key,
+    super.key,
     required this.imageUrls,
     this.animationDuration = const Duration(milliseconds: 300),
-  }) : super(key: key);
+  });
 
   @override
   _AnimatedImageCarouselState createState() => _AnimatedImageCarouselState();
@@ -92,7 +91,7 @@ class _AnimatedImageCarouselState extends State<AnimatedImageCarousel> {
         if (nextPage < widget.imageUrls.length) {
           _pageController.animateToPage(
             nextPage,
-            duration: Duration(milliseconds: 900),
+            duration: const Duration(milliseconds: 900),
             curve: Curves.easeInOut,
           );
         }
@@ -124,14 +123,14 @@ class _AnimatedImageCarouselState extends State<AnimatedImageCarousel> {
           ),
           child: AnimatedContainer(
             duration: widget.animationDuration,
-            margin: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+            margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
               boxShadow: [
                 BoxShadow(
                   color: Colors.black.withOpacity(0.3),
                   blurRadius: 10,
-                  offset: Offset(0, 5),
+                  offset: const Offset(0, 5),
                 ),
               ],
             ),
