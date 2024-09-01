@@ -8,7 +8,7 @@ uniform sampler2D uTexture;
 
 out vec4 FragColor;
 
-const int BLUR_SIZE = 3; // You can adjust this value for a larger or smaller blur
+const int BLUR_SIZE = 10; // You can adjust this value for a larger or smaller blur
 
 void main() {
     vec2 fragCoord = FlutterFragCoord().xy;

@@ -12,24 +12,24 @@ import 'package:a_closer_look_at_the_blur_effect/slides/slide_16_saturated.dart'
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_17_Smooth.dart';
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_18_shadermask.dart';
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_19_not_enough.dart';
+import 'package:a_closer_look_at_the_blur_effect/slides/slide_21_blur_with_dart.dart';
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_2_solution.dart';
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_20_interactive_blurring.dart';
-import 'package:a_closer_look_at_the_blur_effect/slides/slide_21.dart';
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_22.dart';
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_23.dart';
-import 'package:a_closer_look_at_the_blur_effect/slides/slide_24.dart';
-import 'package:a_closer_look_at_the_blur_effect/slides/slide_25.dart';
-import 'package:a_closer_look_at_the_blur_effect/slides/slide_26.dart';
+import 'package:a_closer_look_at_the_blur_effect/slides/slide_24_gpu_vs_cpu.dart';
+import 'package:a_closer_look_at_the_blur_effect/slides/slide_25_flutter_blur_code.dart';
+import 'package:a_closer_look_at_the_blur_effect/slides/slide_26_not_all_blur_are_The_same.dart';
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_27.dart';
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_28.dart';
-import 'package:a_closer_look_at_the_blur_effect/slides/slide_29.dart';
+import 'package:a_closer_look_at_the_blur_effect/slides/slide_29_custom_ones.dart';
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_3_gauss.dart';
-import 'package:a_closer_look_at_the_blur_effect/slides/slide_30.dart';
-import 'package:a_closer_look_at_the_blur_effect/slides/slide_31.dart';
-import 'package:a_closer_look_at_the_blur_effect/slides/slide_32.dart';
-import 'package:a_closer_look_at_the_blur_effect/slides/slide_33.dart';
-import 'package:a_closer_look_at_the_blur_effect/slides/slide_34.dart';
-import 'package:a_closer_look_at_the_blur_effect/slides/slide_35.dart';
+import 'package:a_closer_look_at_the_blur_effect/slides/slide_30_box_blur.dart';
+import 'package:a_closer_look_at_the_blur_effect/slides/slide_31_lens.dart';
+import 'package:a_closer_look_at_the_blur_effect/slides/slide_32_forsted_glass.dart';
+import 'package:a_closer_look_at_the_blur_effect/slides/slide_33_gradual.dart';
+import 'package:a_closer_look_at_the_blur_effect/slides/slide_34_code_slides.dart';
+import 'package:a_closer_look_at_the_blur_effect/slides/slide_35_thank_you.dart';
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_4.dart';
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_5.dart';
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_6.dart';
@@ -44,7 +44,7 @@ late Highlighter highlighter;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Highlighter.initialize(['dart', 'yaml', 'sql']);
+  await Highlighter.initialize(['dart']);
   var theme = await HighlighterTheme.loadLightTheme();
   highlighter = Highlighter(
     language: 'dart',
@@ -58,65 +58,74 @@ class FlutterDeckExample extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FlutterDeckApp(
-      configuration: FlutterDeckConfiguration(
-        slideSize: FlutterDeckSlideSize.fromAspectRatio(
-          aspectRatio: const FlutterDeckAspectRatio.ratio16x9(),
-          resolution: const FlutterDeckResolution.fhd(),
-        ),
-        showProgress: false,
-        transition: const FlutterDeckTransition.custom(
-          transitionBuilder: FlutterDeckVSlideTransitionBuilder(),
-        ),
+    return ScrollConfiguration(
+      behavior: ScrollConfiguration.of(context).copyWith(
+        dragDevices: {
+          PointerDeviceKind.touch,
+          PointerDeviceKind.mouse,
+          PointerDeviceKind.trackpad,
+        },
       ),
-      darkTheme: FlutterDeckThemeData.fromTheme(
-        ThemeData.from(
-          colorScheme: ColorScheme.fromSeed(
-            seedColor: const Color(0xFF16222A),
-            brightness: Brightness.dark,
+      child: FlutterDeckApp(
+        configuration: FlutterDeckConfiguration(
+          slideSize: FlutterDeckSlideSize.fromAspectRatio(
+            aspectRatio: const FlutterDeckAspectRatio.ratio16x9(),
+            resolution: const FlutterDeckResolution.fhd(),
           ),
-          useMaterial3: true,
+          showProgress: false,
+          transition: const FlutterDeckTransition.custom(
+            transitionBuilder: FlutterDeckVSlideTransitionBuilder(),
+          ),
         ),
+        darkTheme: FlutterDeckThemeData.fromTheme(
+          ThemeData.from(
+            colorScheme: ColorScheme.fromSeed(
+              seedColor: const Color(0xFF16222A),
+              brightness: Brightness.dark,
+            ),
+            useMaterial3: true,
+          ),
+        ),
+        slides: const [
+          Slide0(),
+          Slide1(),
+          Slide2(),
+          Slide3(),
+          Slide4(),
+          Slide5(),
+          Slide6(),
+          Slide7(),
+          Slide8(),
+          Slide9(),
+          Slide10(),
+          Slide11(),
+          Slide12(),
+          Slide13(),
+          Slide14(),
+          Slide15(),
+          Slide16(),
+          Slide17(),
+          Slide18(),
+          Slide19(),
+          Slide20(),
+          Slide21(),
+          Slide22(),
+          Slide23(),
+          Slide24(),
+          Slide25(),
+          Slide26(),
+          Slide27(),
+          Slide28(),
+          Slide29(),
+          Slide30(),
+          Slide31(),
+          Slide32(),
+          Slide33(),
+          Slide34(),
+          Slide35(),
+        ],
+        locale: const Locale('en'),
       ),
-      slides: const [
-        Slide0(),
-        Slide1(),
-        Slide2(),
-        Slide3(),
-        Slide4(),
-        Slide5(),
-        Slide6(),
-        Slide7(),
-        Slide8(),
-        Slide9(),
-        Slide10(),
-        Slide11(),
-        Slide12(),
-        Slide13(),
-        Slide14(),
-        Slide15(),
-        Slide16(),
-        Slide17(),
-        Slide18(),
-        Slide19(),
-        Slide20(),
-        Slide21(),
-        Slide22(),
-        Slide23(),
-        Slide24(),
-        Slide25(),
-        Slide26(),
-        Slide27(),
-        Slide28(),
-        Slide29(),
-        Slide30(),
-        Slide31(),
-        Slide32(),
-        Slide33(),
-        Slide34(),
-        Slide35(),
-      ],
-      locale: const Locale('en'),
     );
   }
 }

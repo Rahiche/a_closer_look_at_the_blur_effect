@@ -15,13 +15,27 @@ class Slide28 extends FlutterDeckSlideWidget {
   FlutterDeckSlide build(BuildContext context) {
     return FlutterDeckSlide.custom(
       builder: (context) {
-        return Center(
-          child: Text(
-            'How to create a custimzaed blur?',
-            style: TextStyles.title,
-          ),
-        );
+        return _SlideContent();
       },
+    );
+  }
+}
+
+class _SlideContent extends StatelessWidget {
+  const _SlideContent({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text('RRect Blur', style: TextStyles.title),
+        const SizedBox(height: 20),
+        // Expanded(child: MipmapDemoWidget()),
+
+        // constat time
+        // analytical soliotn
+        // approximation and not true gaussian
+      ],
     );
   }
 }

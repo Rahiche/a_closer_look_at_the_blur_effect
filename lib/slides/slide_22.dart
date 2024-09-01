@@ -15,13 +15,23 @@ class Slide22 extends FlutterDeckSlideWidget {
   FlutterDeckSlide build(BuildContext context) {
     return FlutterDeckSlide.custom(
       builder: (context) {
-        return Center(
-          child: Text(
-            'Writing the example using Rust',
-            style: TextStyles.title,
-          ),
-        );
+        return _SlideContent();
       },
+    );
+  }
+}
+
+class _SlideContent extends StatelessWidget {
+  const _SlideContent({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text('With Rust', style: TextStyles.title),
+        const SizedBox(height: 20),
+        // Expanded(child: InteractiveMarioPixelArt()),
+      ],
     );
   }
 }

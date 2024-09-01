@@ -17,8 +17,9 @@ class Slide23 extends FlutterDeckSlideWidget {
       builder: (context) {
         return Center(
           child: Text(
-            'This is good but for pre caching, offline rendering or for backend operation, we need real time',
+            'This Ideal for pre-caching, offline rendering, and backend operations. However, most mobile scenarios require real-time processing.',
             style: TextStyles.title,
+            textAlign: TextAlign.center,
           ),
         );
       },

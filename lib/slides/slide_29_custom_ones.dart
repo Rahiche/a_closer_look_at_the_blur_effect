@@ -2,12 +2,12 @@ import 'package:a_closer_look_at_the_blur_effect/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_deck/flutter_deck.dart';
 
-class Slide30 extends FlutterDeckSlideWidget {
-  const Slide30()
+class Slide29 extends FlutterDeckSlideWidget {
+  const Slide29()
       : super(
           configuration: const FlutterDeckSlideConfiguration(
-            route: '/30',
-            title: '30',
+            route: '/29',
+            title: '29',
           ),
         );
 
@@ -17,7 +17,7 @@ class Slide30 extends FlutterDeckSlideWidget {
       builder: (context) {
         return Center(
           child: Text(
-            'A simple box blur',
+            'Q: How to create a custimzaed blur?' + 'Custom Fragment shaders',
             style: TextStyles.title,
           ),
         );

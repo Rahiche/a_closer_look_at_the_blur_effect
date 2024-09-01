@@ -16,9 +16,20 @@ class Slide34 extends FlutterDeckSlideWidget {
     return FlutterDeckSlide.custom(
       builder: (context) {
         return Center(
-          child: Text(
-            'Summary',
-            style: TextStyles.title,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Code(slides) on Github',
+                style: TextStyles.title,
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Image.network("https://i.imgur.com/Bq2d6nx.png"),
+            ],
           ),
         );
       },

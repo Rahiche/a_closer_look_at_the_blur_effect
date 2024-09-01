@@ -15,13 +15,27 @@ class Slide27 extends FlutterDeckSlideWidget {
   FlutterDeckSlide build(BuildContext context) {
     return FlutterDeckSlide.custom(
       builder: (context) {
-        return Center(
-          child: Text(
-            'Flutter blurring is fast',
-            style: TextStyles.title,
-          ),
-        );
+        return _SlideContent();
       },
+    );
+  }
+}
+
+class _SlideContent extends StatelessWidget {
+  const _SlideContent({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text('Gaussian Image Filter speed up', style: TextStyles.title),
+        const SizedBox(height: 20),
+        // Expanded(child: MipmapDemoWidget()),
+
+        // Mipmaping
+        // Gaussian Sepraple kernal
+        // Lerp Hack
+      ],
     );
   }
 }

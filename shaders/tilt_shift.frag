@@ -13,7 +13,7 @@ void main() {
     vec2 uv = fragCoord / uViewSize;
 
     float focusZone = 0.5; // Width of the in-focus zone in the center
-    float blurStrength = 7.0; // Increase for more blur
+    float blurStrength = 8.0; // Increase for more blur
 
     float blurAmount = abs(uv.y - 0.5) - focusZone / 2.0;
     blurAmount = clamp(blurAmount, 0.0, 1.0) * blurStrength;

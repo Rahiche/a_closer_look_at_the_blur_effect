@@ -28,20 +28,18 @@ class Slide35 extends FlutterDeckSlideWidget {
                 'Raouf Rahiche',
                 style: FlutterDeckTheme.of(context).textTheme.subtitle,
               ),
-              SizedBox(height: 40),
-              Row(
+              SizedBox(height: 80),
+              Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  _buildSocialLink(
-                    icon: Icons.abc,
-                    url: 'https://github.com/raoufrahiche',
-                    label: 'GitHub',
+                  Text(
+                    'Github @rahiche',
+                    style: FlutterDeckTheme.of(context).textTheme.subtitle,
                   ),
-                  SizedBox(width: 20),
-                  _buildSocialLink(
-                    icon: Icons.abc,
-                    url: 'https://twitter.com/raoufrahiche',
-                    label: 'Twitter',
+                  SizedBox(height: 40),
+                  Text(
+                    'Twitter @raoufrahiche',
+                    style: FlutterDeckTheme.of(context).textTheme.subtitle,
                   ),
                 ],
               ),

@@ -5,7 +5,7 @@ precision mediump float;
 
 uniform vec2 uViewSize;
 uniform sampler2D uTexture;
-const float uBlurAmount = 0.6;
+const float uBlurAmount = 1.6;
 
 out vec4 FragColor;
 
