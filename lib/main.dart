@@ -26,7 +26,7 @@ import 'package:a_closer_look_at_the_blur_effect/slides/slide_29_custom_ones.dar
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_3_gauss.dart';
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_30_box_blur.dart';
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_31_lens.dart';
-import 'package:a_closer_look_at_the_blur_effect/slides/slide_32_forsted_glass.dart';
+import 'package:a_closer_look_at_the_blur_effect/slides/slide_32_glassy.dart';
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_33_gradual.dart';
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_34_code_slides.dart';
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_35_thank_you.dart';

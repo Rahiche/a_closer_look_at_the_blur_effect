@@ -14,6 +14,7 @@ class ShaderWidget extends StatefulWidget {
 
 class _ShaderWidgetState extends State<ShaderWidget> {
   bool _applyShader = false;
+  double _shaderValue = 0.5; // Default shader value
 
   @override
   void initState() {
@@ -43,6 +44,9 @@ class _ShaderWidgetState extends State<ShaderWidget> {
                       (image, size, canvas) {
                         shader.setFloat(0, size.width);
                         shader.setFloat(1, size.height);
+                        if (widget.name == "glass") {
+                          shader.setFloat(2, _shaderValue);
+                        }
                         shader.setImageSampler(0, image);
 
                         canvas.drawRect(
@@ -72,6 +76,22 @@ class _ShaderWidgetState extends State<ShaderWidget> {
             },
           ),
         ),
+        if (_applyShader && widget.name == "glass")
+          Positioned(
+            bottom: 16,
+            left: 16,
+            right: 16,
+            child: Slider(
+              value: _shaderValue,
+              min: 0.0,
+              max: 1.0,
+              onChanged: (value) {
+                setState(() {
+                  _shaderValue = value;
+                });
+              },
+            ),
+          ),
       ],
     );
   }

@@ -21,48 +21,18 @@ class Slide35 extends FlutterDeckSlideWidget {
             children: [
               Text(
                 'Thank You!',
-                style: FlutterDeckTheme.of(context).textTheme.title,
+                style: TextStyles.title,
               ),
               SizedBox(height: 20),
               Text(
-                'Raouf Rahiche',
-                style: FlutterDeckTheme.of(context).textTheme.subtitle,
+                '@rahiche',
+                style: TextStyles.subtitle,
               ),
               SizedBox(height: 80),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Github @rahiche',
-                    style: FlutterDeckTheme.of(context).textTheme.subtitle,
-                  ),
-                  SizedBox(height: 40),
-                  Text(
-                    'Twitter @raoufrahiche',
-                    style: FlutterDeckTheme.of(context).textTheme.subtitle,
-                  ),
-                ],
-              ),
             ],
           ),
         );
       },
-    );
-  }
-
-  Widget _buildSocialLink({
-    required IconData icon,
-    required String url,
-    required String label,
-  }) {
-    return InkWell(
-      child: Column(
-        children: [
-          Icon(icon, size: 30),
-          SizedBox(height: 8),
-          Text(label),
-        ],
-      ),
     );
   }
 }
