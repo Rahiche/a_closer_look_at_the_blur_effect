@@ -55,8 +55,8 @@ class _ImageFilterPlaygroundSlideState
                       sigmaX: _useCombinedBlur ? _combinedSigma : _sigmaX,
                       sigmaY: _useCombinedBlur ? _combinedSigma : _sigmaY,
                     ),
-                    child: Image.network(
-                      'https://picsum.photos/500/300',
+                    child: Image.asset(
+                      'assets/room.png',
                       fit: BoxFit.contain,
                     ),
                   ),

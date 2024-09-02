@@ -26,7 +26,7 @@ class Slide34 extends FlutterDeckSlideWidget {
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 20),
-              Image.network("https://i.imgur.com/Bq2d6nx.png"),
+              // Image.network("https://i.imgur.com/Bq2d6nx.png"),
             ],
           ),
         );

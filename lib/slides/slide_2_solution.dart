@@ -69,7 +69,7 @@ class _Slide1ContentState extends State<Slide1Content> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  'What is the total sum of numbers from 1 to 100?',
+                  'Calculate the sum of all integers from 1 to 100',
                   style: TextStyles.title,
                   textAlign: TextAlign.center,
                 ),

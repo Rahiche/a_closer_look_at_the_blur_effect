@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_deck/flutter_deck.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
-class Slide29 extends FlutterDeckSlideWidget {
-  const Slide29()
+class Slide29x extends FlutterDeckSlideWidget {
+  const Slide29x()
       : super(
           configuration: const FlutterDeckSlideConfiguration(
-            route: '/29',
-            title: '29',
+            route: '/29x',
+            title: '29x',
           ),
         );
 
@@ -36,7 +36,7 @@ class AnimatedQuestionAnswer extends StatefulWidget {
 }
 
 class _AnimatedQuestionAnswerState extends State<AnimatedQuestionAnswer> {
-  bool _showAnswer = false;
+  bool _showAnswer = true;
 
   @override
   Widget build(BuildContext context) {
@@ -54,20 +54,13 @@ class _AnimatedQuestionAnswerState extends State<AnimatedQuestionAnswer> {
             Text(
               'Q: How to create a customized blur?',
               style: TextStyles.title,
-            )
-                .animate()
-                .fadeIn(duration: 500.ms)
-                .scale(begin: const Offset(0.8, 0.8), end: const Offset(1, 1)),
+            ),
             if (_showAnswer) ...[
               const SizedBox(height: 16),
               Text(
                 'A: Custom Fragment shaders',
                 style: TextStyles.title,
-              )
-                  .animate()
-                  .show(delay: 300.ms)
-                  .fadeIn(duration: 300.ms)
-                  .slideY(begin: 0.5, end: 0)
+              ).animate().fadeIn(duration: 300.ms).slideY(begin: 0.5, end: 0)
             ],
           ],
         ),

@@ -43,6 +43,8 @@ dependencies:
   syntax_highlight: 0.4.0
   image: 4.2.0
   flutter_syntax_view: 4.1.0
+  cached_network_image: 3.4.1
+  linked_scroll_controller: 0.2.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -74,3 +76,16 @@ flutter:
     - assets/bg.png
     - assets/rg.jpg
     - assets/
+    - images/
+
+  fonts:
+    - family: OpenSans
+      fonts:
+        - asset: fonts/OpenSans-Regular.ttf
+        - asset: fonts/OpenSans-Bold.ttf
+          weight: 700
+        - asset: fonts/OpenSans-SemiBold.ttf
+          weight: 600
+    - family: Oswald
+      fonts:
+        - asset: fonts/Oswald-Regular.ttf

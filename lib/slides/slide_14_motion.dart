@@ -1,9 +1,11 @@
 import 'package:a_closer_look_at_the_blur_effect/text_styles.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_deck/flutter_deck.dart';
 import 'dart:ui';
 import 'dart:async';
 import 'package:device_frame/device_frame.dart';
+import 'package:linked_scroll_controller/linked_scroll_controller.dart';
 
 class Slide14 extends FlutterDeckSlideWidget {
   const Slide14()
@@ -46,10 +48,7 @@ class _MotionBlurDemoState extends State<MotionBlurDemo> {
               // Left side: Demo
               Expanded(
                 flex: 2,
-                child: DeviceFrame(
-                  device: Devices.ios.iPhone13,
-                  screen: BlurredListViewDemo(maxScrollSpeed: _maxScrollSpeed),
-                ),
+                child: BlurredListViewDemo(maxScrollSpeed: _maxScrollSpeed),
               ),
               // Right side: Slider
               Expanded(
@@ -81,63 +80,17 @@ class _MotionBlurDemoState extends State<MotionBlurDemo> {
             ],
           ),
         ),
+        const SizedBox(height: 80),
       ],
     );
   }
 }
 
-// class MotionBlurDemo extends StatelessWidget {
-//   const MotionBlurDemo({Key? key}) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     var highlightedCode = highlighter.highlight("""
-// AnimatedBuilder(
-//   animation: _blurAnimation,
-//   builder: (context, child) => IgnorePointer(
-//     child: BackdropFilter(
-//       filter: ImageFilter.blur(sigmaY: _blurAnimation.value),
-//       child: Container(color: Colors.transparent),
-//     ),
-//   ),
-// ),
-// """);
-//     return Column(
-//       children: [
-//         Text('Motion Blur', style: TextStyles.subtitle),
-//         const SizedBox(height: 20),
-//         Expanded(
-//           child: Row(
-//             children: [
-//               // Left side: Demo
-//               Expanded(
-//                 child: DeviceFrame(
-//                   device: Devices.ios.iPhone13,
-//                   screen: BlurredListViewDemo(),
-//                 ),
-//               ),
-//               // Right side: Code
-//               Expanded(
-//                 child: Container(
-//                   color: Colors.grey[200],
-//                   padding: EdgeInsets.all(16),
-//                   child: SingleChildScrollView(
-//                     child: Text.rich(highlightedCode),
-//                   ),
-//                 ),
-//               ),
-//             ],
-//           ),
-//         ),
-//       ],
-//     );
-//   }
-// }
-
 class BlurredListViewDemo extends StatefulWidget {
   final double maxScrollSpeed;
 
-  const BlurredListViewDemo({super.key, required this.maxScrollSpeed});
+  const BlurredListViewDemo({Key? key, required this.maxScrollSpeed})
+      : super(key: key);
 
   @override
   _BlurredListViewDemoState createState() => _BlurredListViewDemoState();
@@ -145,20 +98,25 @@ class BlurredListViewDemo extends StatefulWidget {
 
 class _BlurredListViewDemoState extends State<BlurredListViewDemo>
     with SingleTickerProviderStateMixin {
-  final ScrollController _scrollController = ScrollController();
+  late LinkedScrollControllerGroup _controllers;
+  late ScrollController _scrollController1;
+  late ScrollController _scrollController2;
   late AnimationController _animationController;
   late Animation<double> _blurAnimation;
   Timer? _scrollEndTimer;
   double _lastScrollPosition = 0;
   double _scrollSpeed = 0;
   DateTime _lastScrollTime = DateTime.now();
-  double _maxScrollSpeed = 10.0; // Adjust this value to change blur sensitivity
+  double _maxScrollSpeed = 10.0;
   bool _isMotionBlurEnabled = true;
 
   @override
   void initState() {
     super.initState();
-    _scrollController.addListener(_scrollListener);
+    _controllers = LinkedScrollControllerGroup();
+    _scrollController1 = _controllers.addAndGet();
+    _scrollController2 = _controllers.addAndGet();
+    _scrollController1.addListener(_scrollListener);
     _animationController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 100),
@@ -170,19 +128,16 @@ class _BlurredListViewDemoState extends State<BlurredListViewDemo>
   void _scrollListener() {
     if (!_isMotionBlurEnabled) return;
 
-    final currentScrollPosition = _scrollController.position.pixels;
+    final currentScrollPosition = _scrollController1.position.pixels;
     final currentTime = DateTime.now();
     final timeDiff = currentTime.difference(_lastScrollTime).inMilliseconds;
 
     if (timeDiff > 0) {
       _scrollSpeed =
           (currentScrollPosition - _lastScrollPosition).abs() / timeDiff;
-
-      // Calculate blur amount based on scroll speed
       double blurAmount = (_scrollSpeed / _maxScrollSpeed).clamp(0.0, 1.0);
       _animationController.animateTo(blurAmount,
           duration: const Duration(milliseconds: 50));
-
       setState(() {});
     }
 
@@ -191,75 +146,121 @@ class _BlurredListViewDemoState extends State<BlurredListViewDemo>
 
     _scrollEndTimer?.cancel();
     _scrollEndTimer = Timer(const Duration(milliseconds: 200), () {
-      _animationController.animateTo(0, duration: const Duration(milliseconds: 200));
+      _animationController.animateTo(0,
+          duration: const Duration(milliseconds: 200));
     });
   }
 
-  @override
-  Widget build(BuildContext context) {
-    _maxScrollSpeed =
-        widget.maxScrollSpeed; // Update maxScrollSpeed when it changes
+  void _simulateFastScroll() {
+    final targetPosition = _scrollController1.offset + 4500;
+    _scrollController1.animateTo(
+      targetPosition,
+      duration: const Duration(seconds: 1),
+      curve: Curves.easeInOut,
+    );
+  }
 
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Blurred ListView'),
-        actions: [
-          Text(_scrollSpeed.toStringAsFixed(2)),
-          Switch(
-            value: _isMotionBlurEnabled,
-            onChanged: (value) {
-              setState(() {
-                _isMotionBlurEnabled = value;
-                if (!_isMotionBlurEnabled) {
-                  _animationController.animateTo(0);
-                }
-              });
-            },
-          ),
-        ],
+  void _goBack() {
+    final targetPosition = 0.0;
+    _scrollController1.animateTo(
+      targetPosition,
+      duration: const Duration(seconds: 2),
+      curve: Curves.easeInOut,
+    );
+  }
+
+  Widget _buildListView(ScrollController controller) {
+    return ScrollConfiguration(
+      behavior: ScrollConfiguration.of(context).copyWith(
+        dragDevices: {
+          PointerDeviceKind.touch,
+          PointerDeviceKind.mouse,
+          PointerDeviceKind.trackpad
+        },
       ),
-      body: Stack(
-        children: [
-          ScrollConfiguration(
-            behavior: ScrollConfiguration.of(context).copyWith(
-              dragDevices: {
-                PointerDeviceKind.touch,
-                PointerDeviceKind.mouse,
-                PointerDeviceKind.trackpad
-              },
-            ),
-            child: ListView.builder(
-              physics: const BouncingScrollPhysics(),
-              controller: _scrollController,
-              itemCount: 50,
-              itemBuilder: (context, index) => Card(
-                margin: const EdgeInsets.all(8),
-                child: Image.network(
-                  'https://picsum.photos/seed/${index + 1}/300/200',
-                  height: 200,
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
+      child: ListView.builder(
+        physics: const BouncingScrollPhysics(),
+        controller: controller,
+        itemCount: 500,
+        itemBuilder: (context, index) => Card(
+          margin: const EdgeInsets.all(8),
+          child: CachedNetworkImage(
+            imageUrl: 'https://picsum.photos/id/${index + 1}/600/400',
+            height: 200,
+            fit: BoxFit.cover,
           ),
-          if (_isMotionBlurEnabled)
-            AnimatedBuilder(
-              animation: _blurAnimation,
-              builder: (context, child) => IgnorePointer(
-                child: BackdropFilter(
-                  filter: ImageFilter.blur(sigmaY: _blurAnimation.value),
-                  child: Container(color: Colors.transparent),
-                ),
-              ),
-            ),
-        ],
+        ),
       ),
     );
   }
 
   @override
+  Widget build(BuildContext context) {
+    _maxScrollSpeed = widget.maxScrollSpeed;
+
+    return Row(
+      children: [
+        Expanded(
+          child: DeviceFrame(
+            device: Devices.ios.iPhone13,
+            screen: Scaffold(
+              appBar: AppBar(
+                title: const Text('ListView'),
+              ),
+              body: Stack(
+                children: [
+                  _buildListView(_scrollController2),
+                ],
+              ),
+            ),
+          ),
+        ),
+        Expanded(
+          child: DeviceFrame(
+            device: Devices.ios.iPhone13,
+            screen: Scaffold(
+              appBar: AppBar(
+                title: const Text('Motion Blurred ListView'),
+                actions: [
+                  IconButton(
+                    icon: const Icon(Icons.reset_tv),
+                    onPressed: _goBack,
+                    tooltip: 'goBack',
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.speed),
+                    onPressed: _simulateFastScroll,
+                    tooltip: 'Simulate Fast Scroll',
+                  ),
+                ],
+              ),
+              body: Stack(
+                children: [
+                  _buildListView(_scrollController1),
+                  if (_isMotionBlurEnabled)
+                    AnimatedBuilder(
+                      animation: _blurAnimation,
+                      builder: (context, child) => IgnorePointer(
+                        child: BackdropFilter(
+                          filter:
+                              ImageFilter.blur(sigmaY: _blurAnimation.value),
+                          child: Container(color: Colors.transparent),
+                        ),
+                      ),
+                    ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  @override
   void dispose() {
-    _scrollController.dispose();
+    _scrollController1.dispose();
+    _scrollController2.dispose();
     _animationController.dispose();
     _scrollEndTimer?.cancel();
     super.dispose();

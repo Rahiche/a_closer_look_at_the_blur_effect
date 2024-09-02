@@ -1,4 +1,5 @@
 import 'package:a_closer_look_at_the_blur_effect/text_styles.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_deck/flutter_deck.dart';
 import 'dart:ui';
@@ -55,7 +56,7 @@ class _ShaderMaskDemoState extends State<ShaderMaskDemo> {
   bool _showBlurredOverlay = true;
   bool _showShaderMask = true;
   bool _showBackdropFilter = true;
-  bool _useCustomBlurredImage = false;
+  bool _useCustomBlurredImage = true;
   double _blurSigma = ShaderMaskDemo._blurSigma;
   double _gradientStop1 = ShaderMaskDemo._gradientStop1;
   double _gradientStop2 = ShaderMaskDemo._gradientStop2;
@@ -88,8 +89,8 @@ class _ShaderMaskDemoState extends State<ShaderMaskDemo> {
   }
 
   Widget _buildBackgroundImage() {
-    return Image.network(
-      ShaderMaskDemo._imageUrl,
+    return CachedNetworkImage(
+      imageUrl: ShaderMaskDemo._imageUrl,
       fit: BoxFit.cover,
       alignment: Alignment.bottomCenter,
     );
@@ -130,6 +131,24 @@ class _ShaderMaskDemoState extends State<ShaderMaskDemo> {
   Widget _buildControls() {
     return Column(
       children: [
+        SizedBox(height: 20),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            ElevatedButton(
+              onPressed: _resetAllFlags,
+              child: const Text('Reset All'),
+            ),
+            ElevatedButton(
+              onPressed: _setPresetFlags,
+              child: const Text('Set Preset'),
+            ),
+            ElevatedButton(
+              onPressed: _setPreset2Flags,
+              child: const Text('Set Preset 2'),
+            ),
+          ],
+        ),
         SwitchListTile(
           title: const Text('Show Background Image'),
           value: _showBackgroundImage,
@@ -222,5 +241,47 @@ class _ShaderMaskDemoState extends State<ShaderMaskDemo> {
         ),
       ],
     );
+  }
+
+  void _resetAllFlags() {
+    setState(() {
+      _showBackgroundImage = true;
+      _showBlurredOverlay = true;
+      _showShaderMask = true;
+      _showBackdropFilter = true;
+      _useCustomBlurredImage = false;
+      _blurSigma = ShaderMaskDemo._blurSigma;
+      _gradientStop1 = ShaderMaskDemo._gradientStop1;
+      _gradientStop2 = ShaderMaskDemo._gradientStop2;
+    });
+  }
+
+  void _setPresetFlags() {
+    setState(() {
+      _showBackdropFilter = true;
+      _showBackgroundImage = true;
+      _showBlurredOverlay = true;
+      _showShaderMask = true;
+      _useCustomBlurredImage = true;
+      _showBlurredOverlay = true;
+      _showShaderMask = true;
+      _useCustomBlurredImage = true;
+    });
+  }
+
+  void _setPreset2Flags() {
+    _showBackgroundImage = false;
+    _showBlurredOverlay = false;
+    _showShaderMask = false;
+    _showBackdropFilter = false;
+    _useCustomBlurredImage = false;
+    _blurSigma = ShaderMaskDemo._blurSigma;
+    _gradientStop1 = ShaderMaskDemo._gradientStop1;
+    _gradientStop2 = ShaderMaskDemo._gradientStop2;
+    setState(() {
+      _showBlurredOverlay = true;
+      _showShaderMask = true;
+      _useCustomBlurredImage = true;
+    });
   }
 }

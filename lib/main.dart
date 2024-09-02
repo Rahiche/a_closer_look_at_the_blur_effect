@@ -12,7 +12,9 @@ import 'package:a_closer_look_at_the_blur_effect/slides/slide_16_saturated.dart'
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_17_Smooth.dart';
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_18_shadermask.dart';
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_19_not_enough.dart';
+import 'package:a_closer_look_at_the_blur_effect/slides/slide_20.dart';
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_21_blur_with_dart.dart';
+import 'package:a_closer_look_at_the_blur_effect/slides/slide_29.dart';
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_2_solution.dart';
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_20_interactive_blurring.dart';
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_22.dart';
@@ -23,6 +25,8 @@ import 'package:a_closer_look_at_the_blur_effect/slides/slide_26_not_all_blur_ar
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_27_speedup_gaussian.dart';
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_28_fast_rrect.dart';
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_29_custom_ones.dart';
+import 'package:a_closer_look_at_the_blur_effect/slides/slide_2_x.dart';
+import 'package:a_closer_look_at_the_blur_effect/slides/slide_33.dart';
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_3_gauss.dart';
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_30_box_blur.dart';
 import 'package:a_closer_look_at_the_blur_effect/slides/slide_31_lens.dart';
@@ -87,6 +91,7 @@ class FlutterDeckExample extends StatelessWidget {
           Slide0(),
           Slide1(),
           Slide2(),
+          Slide2x(),
           Slide3(),
           Slide4(),
           Slide8(),
@@ -102,6 +107,7 @@ class FlutterDeckExample extends StatelessWidget {
           Slide18(),
           Slide19(),
           Slide20(),
+          Slide20x(),
           Slide21(),
           Slide22(),
           Slide23(),
@@ -111,10 +117,12 @@ class FlutterDeckExample extends StatelessWidget {
           Slide27(),
           Slide28(),
           Slide29(),
+          Slide29x(),
           Slide30(),
           Slide31(),
           Slide32(),
           Slide33(),
+          Slide33Demo(),
           Slide34(),
           Slide35(),
         ],

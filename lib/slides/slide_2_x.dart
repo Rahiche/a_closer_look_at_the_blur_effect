@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_deck/flutter_deck.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
-class Slide1 extends FlutterDeckSlideWidget {
-  const Slide1()
+class Slide2x extends FlutterDeckSlideWidget {
+  const Slide2x()
       : super(
           configuration: const FlutterDeckSlideConfiguration(
-            route: '/1',
-            title: '1',
+            route: '/2x',
+            title: '2x',
           ),
         );
 
@@ -31,8 +31,30 @@ class Slide1Content extends StatefulWidget {
 }
 
 class _Slide1ContentState extends State<Slide1Content> {
-  bool _showNumberList = false;
+  bool _showNumberList = true;
   int _currentStep = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(const Duration(milliseconds: 3000), () {
+      if (mounted) {
+        setState(() => _currentStep = 1);
+      }
+    });
+
+    Future.delayed(const Duration(milliseconds: 6000), () {
+      if (mounted) {
+        setState(() => _currentStep = 2);
+      }
+    });
+
+    Future.delayed(const Duration(milliseconds: 9000), () {
+      if (mounted) {
+        setState(() => _currentStep = 3);
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +86,7 @@ class _Slide1ContentState extends State<Slide1Content> {
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: Spacing.sm),
-                if (_showNumberList) NumberList(currentStep: _currentStep),
+                NumberList(currentStep: _currentStep),
                 if (_showNumberList && _currentStep > 0)
                   Text(
                     'Sum: 101',
@@ -101,21 +123,7 @@ class NumberList extends StatelessWidget {
               color: isHighlighted ? Colors.red : null,
               fontWeight: isHighlighted ? FontWeight.bold : null,
             ),
-          )
-              .animate()
-              .fadeIn(duration: 600.ms, delay: (index * 60).ms)
-              .slideY(
-                begin: 0.5,
-                end: 0,
-                duration: 600.ms,
-                delay: (index * 60).ms,
-              )
-              .blur(
-                delay: (index * 60).ms,
-                duration: 600.ms,
-                begin: const Offset(10, 10),
-                end: const Offset(0, 0),
-              );
+          );
         }),
       ),
     );

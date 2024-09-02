@@ -179,7 +179,7 @@ class _ColorMatrixAndBlurState extends State<ColorMatrixAndBlur> {
     Widget content = ImageFiltered(
       imageFilter: _buildImageFilter(),
       child: Image.network(
-        'https://picsum.photos/400/600',
+        "https://picsum.photos/id/112/200/300",
         fit: BoxFit.cover,
       ),
     );

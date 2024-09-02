@@ -61,7 +61,7 @@ class _ImageFilterDemoState extends State<ImageFilterDemo> {
           Expanded(
             child: Center(
               child: ImageFilter(
-                imageUrl: 'https://picsum.photos/500/300',
+                imageUrl: "https://picsum.photos/id/112/400/600",
                 blurSigma: _blurValue,
                 dilateAmount: _dilateValue,
                 erodeAmount: _erodeValue,
@@ -173,8 +173,8 @@ class _ImageFilterDemoState extends State<ImageFilterDemo> {
 
   void _applyLensBlur() {
     setState(() {
-      _blurValue = 8.0;
-      _dilateValue = 20.0;
+      _blurValue = 3.0;
+      _dilateValue = 5.0;
       _erodeValue = 0.0;
       _isBlurOuter = true;
       _isDilateEnabled = true;
@@ -205,8 +205,11 @@ class ImageFilter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final blurFilter =
-        ui.ImageFilter.blur(sigmaX: blurSigma, sigmaY: blurSigma);
+    final blurFilter = ui.ImageFilter.blur(
+      sigmaX: blurSigma,
+      sigmaY: blurSigma,
+      tileMode: TileMode.decal,
+    );
     final morphologyFilter = _getMorphologyFilter();
 
     return ImageFiltered(
@@ -214,18 +217,26 @@ class ImageFilter extends StatelessWidget {
         outer: isBlurOuter ? blurFilter : morphologyFilter,
         inner: isBlurOuter ? morphologyFilter : blurFilter,
       ),
-      child: Image.network(imageUrl),
+      child: Image.network(
+        imageUrl,
+        alignment: Alignment.center,
+      ),
     );
   }
 
   ui.ImageFilter _getMorphologyFilter() {
     if (isDilateEnabled) {
       return ui.ImageFilter.dilate(
-          radiusX: dilateAmount, radiusY: dilateAmount);
+        radiusX: dilateAmount,
+        radiusY: dilateAmount,
+      );
     } else if (isErodeEnabled) {
       return ui.ImageFilter.erode(radiusX: erodeAmount, radiusY: erodeAmount);
     } else {
-      return ui.ImageFilter.blur(sigmaX: 0, sigmaY: 0); // No-op filter
+      return ui.ImageFilter.blur(
+        sigmaX: 0,
+        sigmaY: 0,
+      ); // No-op filter
     }
   }
 }

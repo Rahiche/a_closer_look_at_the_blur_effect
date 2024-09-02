@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:a_closer_look_at_the_blur_effect/text_styles.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_deck/flutter_deck.dart';
 
@@ -136,8 +137,8 @@ class _AnimatedImageCarouselState extends State<AnimatedImageCarousel> {
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
-              child: Image.network(
-                widget.imageUrls[index],
+              child: CachedNetworkImage(
+                imageUrl: widget.imageUrls[index],
                 fit: BoxFit.cover,
               ),
             ),

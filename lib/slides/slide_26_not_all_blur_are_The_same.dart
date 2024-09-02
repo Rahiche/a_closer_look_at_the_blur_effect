@@ -88,8 +88,8 @@ class _BlurDemoState extends State<BlurDemo>
                         sigmaY: _animation.value * 10,
                         tileMode: TileMode.decal,
                       ),
-                      child: Image.network(
-                        'https://picsum.photos/200',
+                      child: Image.asset(
+                        "assets/room.png",
                         fit: BoxFit.cover,
                       ),
                     ),
